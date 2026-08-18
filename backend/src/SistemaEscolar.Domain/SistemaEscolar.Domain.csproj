@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>SistemaEscolar.Domain</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Regra de arquitetura: este projeto NÃO pode referenciar nenhum outro
+       projeto da solução nem pacotes de infraestrutura (EF Core, HTTP, etc). -->
+
+</Project>
