@@ -1,0 +1,22 @@
+﻿# .NET
+bin/
+obj/
+*.user
+
+# Node
+node_modules/
+dist/
+build/
+
+# Ambiente / segredos
+.env
+.env.*
+!.env.example
+
+# IDE
+.vs/
+.vscode/
+.idea/
+
+# Dados sensiveis (fotos/embeddings locais de teste)
+*.faceembedding
