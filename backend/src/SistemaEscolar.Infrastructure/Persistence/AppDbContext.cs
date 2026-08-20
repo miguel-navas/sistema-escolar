@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SistemaEscolar.Domain.Alunos;
+using SistemaEscolar.Domain.AnosEscolares;
+using SistemaEscolar.Domain.AnosLetivos;
 using SistemaEscolar.Domain.Common;
 using SistemaEscolar.Domain.Matriculas;
 using SistemaEscolar.Domain.Turmas;
@@ -19,6 +21,8 @@ public sealed class AppDbContext : DbContext
     public DbSet<Aluno> Alunos => Set<Aluno>();
     public DbSet<Turma> Turmas => Set<Turma>();
     public DbSet<Matricula> Matriculas => Set<Matricula>();
+    public DbSet<AnoLetivo> AnosLetivos => Set<AnoLetivo>();
+    public DbSet<AnoEscolar> AnosEscolares => Set<AnoEscolar>();
 
     public AppDbContext(DbContextOptions<AppDbContext> options, IPublisher? publisher = null)
         : base(options)

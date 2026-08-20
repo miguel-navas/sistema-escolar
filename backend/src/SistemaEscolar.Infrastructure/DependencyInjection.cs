@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SistemaEscolar.Application.Common;
 using SistemaEscolar.Domain.Alunos;
+using SistemaEscolar.Domain.AnosEscolares;
+using SistemaEscolar.Domain.AnosLetivos;
 using SistemaEscolar.Domain.Matriculas;
 using SistemaEscolar.Domain.Turmas;
 using SistemaEscolar.Infrastructure.Persistence;
@@ -33,6 +35,8 @@ public static class DependencyInjection
         services.AddScoped<IAlunoRepository, AlunoRepository>();
         services.AddScoped<ITurmaRepository, TurmaRepository>();
         services.AddScoped<IMatriculaRepository, MatriculaRepository>();
+        services.AddScoped<IAnoLetivoRepository, AnoLetivoRepository>();
+        services.AddScoped<IAnoEscolarRepository, AnoEscolarRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         // Stripe, storage S3 e IFacialRecognitionService entram aqui conforme
