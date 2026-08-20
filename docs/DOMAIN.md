@@ -38,3 +38,5 @@
 - PresencaRegistradaEvent
 - CobrancaVencidaEvent
 - PagamentoConfirmadoEvent
+- AnoLetivoCriadoEvent / AnoLetivoAtivadoEvent / AnoLetivoEncerradoEvent
+- AnoEscolarCriadoEvent
