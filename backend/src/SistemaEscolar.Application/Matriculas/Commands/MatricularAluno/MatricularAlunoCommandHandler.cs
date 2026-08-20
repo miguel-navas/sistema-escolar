@@ -2,33 +2,37 @@ using MediatR;
 using SistemaEscolar.Application.Common;
 using SistemaEscolar.Application.Matriculas.DTOs;
 using SistemaEscolar.Domain.Alunos;
+using SistemaEscolar.Domain.AnosLetivos;
 using SistemaEscolar.Domain.Matriculas;
 using SistemaEscolar.Domain.Turmas;
 
 namespace SistemaEscolar.Application.Matriculas.Commands.MatricularAluno;
 
 /// <summary>
-/// Handler = orquestrador entre os agregados Aluno, Turma e Matricula. Se a
-/// turma informada estiver lotada, procura uma turma-irmã com vaga no mesmo
-/// grupo (NomeBase/Turno/AnoLetivo/AnoEscolar) e, se nenhuma tiver vaga,
-/// abre uma nova automaticamente (Turma.AbrirTurmaIrma). Toda regra de
-/// negócio real está em Turma.cs e Matricula.cs (Domain).
+/// Handler = orquestrador entre os agregados Aluno, AnoLetivo, Turma e
+/// Matricula. Se a turma informada estiver lotada, procura uma turma-irmã
+/// com vaga no mesmo grupo (NomeBase/Turno/AnoLetivo/AnoEscolar) e, se
+/// nenhuma tiver vaga, abre uma nova automaticamente (Turma.AbrirTurmaIrma).
+/// Toda regra de negócio real está em Turma.cs e Matricula.cs (Domain).
 /// </summary>
 public sealed class MatricularAlunoCommandHandler
     : IRequestHandler<MatricularAlunoCommand, Result<MatriculaDto>>
 {
     private readonly IAlunoRepository _alunoRepository;
+    private readonly IAnoLetivoRepository _anoLetivoRepository;
     private readonly ITurmaRepository _turmaRepository;
     private readonly IMatriculaRepository _matriculaRepository;
     private readonly IUnitOfWork _unitOfWork;
 
     public MatricularAlunoCommandHandler(
         IAlunoRepository alunoRepository,
+        IAnoLetivoRepository anoLetivoRepository,
         ITurmaRepository turmaRepository,
         IMatriculaRepository matriculaRepository,
         IUnitOfWork unitOfWork)
     {
         _alunoRepository = alunoRepository;
+        _anoLetivoRepository = anoLetivoRepository;
         _turmaRepository = turmaRepository;
         _matriculaRepository = matriculaRepository;
         _unitOfWork = unitOfWork;
@@ -39,6 +43,13 @@ public sealed class MatricularAlunoCommandHandler
         var aluno = await _alunoRepository.ObterPorIdAsync(request.AlunoId, cancellationToken);
         if (aluno is null)
             return Result<MatriculaDto>.Falha("Aluno não encontrado.");
+
+        var anoLetivo = await _anoLetivoRepository.ObterPorIdAsync(request.AnoLetivoId, cancellationToken);
+        if (anoLetivo is null)
+            return Result<MatriculaDto>.Falha("Ano letivo não encontrado.");
+
+        if (anoLetivo.Status != StatusAnoLetivo.Ativo)
+            return Result<MatriculaDto>.Falha("Só é possível matricular em um ano letivo ativo.");
 
         var jaMatriculado = await _matriculaRepository.ExisteMatriculaAtivaAsync(
             request.AlunoId, request.AnoLetivoId, cancellationToken);
