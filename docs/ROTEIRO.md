@@ -40,10 +40,10 @@ Não deixe eu sem revisar: pare e me mostre o plano antes de implementar.
 ```
 
 **Checklist de validação:**
-- [ ] `dotnet build` e `dotnet test` passam
-- [ ] Migração SQL criada em `infra/supabase/`
-- [ ] Endpoint testado no Swagger: criar ano letivo → criar turma → matricular aluno
-- [ ] Regra "matrícula duplicada no mesmo ano letivo" tem teste unitário
+- [x] `dotnet build` e `dotnet test` passam
+- [x] Migração SQL criada em `infra/supabase/`
+- [ ] Endpoint testado no Swagger: criar ano letivo → criar turma → matricular aluno (código pronto e testado via build/testes automatizados; fluxo manual ainda não exercitado neste ambiente por falta de conexão real com Supabase/Postgres)
+- [x] Regra "matrícula duplicada no mesmo ano letivo" tem teste unitário
 
 ---
 
