@@ -40,3 +40,6 @@
 - PagamentoConfirmadoEvent
 - AnoLetivoCriadoEvent / AnoLetivoAtivadoEvent / AnoLetivoEncerradoEvent
 - AnoEscolarCriadoEvent
+- ProfessorCadastradoEvent
+- DisciplinaCriadaEvent
+- VinculoProfessorDisciplinaTurmaCriadoEvent / VinculoProfessorDisciplinaTurmaEncerradoEvent
