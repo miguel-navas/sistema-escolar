@@ -68,8 +68,8 @@ Turma do mesmo AnoEscolar. Pare e me mostre o plano antes de implementar.
 ```
 
 **Checklist de validação:**
-- [ ] Testes cobrindo a regra de compatibilidade AnoEscolar
-- [ ] Swagger: criar professor → criar disciplina → vincular a uma turma da Etapa 1
+- [x] Testes cobrindo a regra de compatibilidade AnoEscolar
+- [ ] Swagger: criar professor → criar disciplina → vincular a uma turma da Etapa 1 (código pronto e testado via build/testes automatizados; fluxo manual ainda não exercitado neste ambiente por falta de conexão real com Supabase/Postgres)
 
 ---
 

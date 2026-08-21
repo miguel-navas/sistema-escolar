@@ -4,8 +4,11 @@ using SistemaEscolar.Domain.Alunos;
 using SistemaEscolar.Domain.AnosEscolares;
 using SistemaEscolar.Domain.AnosLetivos;
 using SistemaEscolar.Domain.Common;
+using SistemaEscolar.Domain.Disciplinas;
 using SistemaEscolar.Domain.Matriculas;
+using SistemaEscolar.Domain.Professores;
 using SistemaEscolar.Domain.Turmas;
+using SistemaEscolar.Domain.Vinculos;
 
 namespace SistemaEscolar.Infrastructure.Persistence;
 
@@ -23,6 +26,9 @@ public sealed class AppDbContext : DbContext
     public DbSet<Matricula> Matriculas => Set<Matricula>();
     public DbSet<AnoLetivo> AnosLetivos => Set<AnoLetivo>();
     public DbSet<AnoEscolar> AnosEscolares => Set<AnoEscolar>();
+    public DbSet<Professor> Professores => Set<Professor>();
+    public DbSet<Disciplina> Disciplinas => Set<Disciplina>();
+    public DbSet<ProfessorDisciplinaTurma> VinculosProfessorDisciplinaTurma => Set<ProfessorDisciplinaTurma>();
 
     public AppDbContext(DbContextOptions<AppDbContext> options, IPublisher? publisher = null)
         : base(options)
